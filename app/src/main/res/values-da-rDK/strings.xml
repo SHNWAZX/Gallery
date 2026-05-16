@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ReFra</string>
+    <string name="app_name">Gallery</string>
     <string name="app_name_gallery">Gallery</string>
     <string name="change_app_name">App name</string>
     <string name="change_app_name_summary">Change the app name shown on your launcher</string>
@@ -72,13 +72,13 @@
     <string name="location_cd">Medie lokation</string>
     <string name="location_map_cd">Placeringskort</string>
     <string name="app_dev">af %s</string>
-    <string name="app_dev_name">IacobIonut01</string>
-    <string name="donate">Doner</string>
+    <string name="app_dev_name">SHNWAZX</string>
+    <string name="donate">Project</string>
     <string name="github">Github</string>
-    <string name="donate_button_cd">Donerknap</string>
+    <string name="donate_button_cd">Project button</string>
     <string name="github_button_cd">Github-knap</string>
-    <string name="donate_url">https://www.paypal.com/paypalme/iacobionut01</string>
-    <string name="github_url">https://github.com/IacobIonut01/Gallery</string>
+    <string name="donate_url">https://github.com/SHNWAZX/Gallery</string>
+    <string name="github_url">https://github.com/SHNWAZX/Gallery</string>
     <string name="use_as">Brug som</string>
     <string name="set_as">"Indstil som: "</string>
     <string name="action_cancel">Annuller</string>
@@ -424,7 +424,7 @@
     <string name="ai_models_privacy">Data Privacy</string>
     <string name="ai_models_privacy_description">All AI processing is performed entirely on your device. No images, search queries, or classification data ever leave your phone. The models run locally using ONNX Runtime and do not require an internet connection once downloaded. Your media remains fully private.</string>
     <string name="ai_models_source">Source</string>
-    <string name="ai_models_source_url">github.com/IacobIonut01/ReFra</string>
+    <string name="ai_models_source_url">github.com/SHNWAZX/Gallery</string>
     <string name="ai_models_files">Model Files</string>
     <string name="ai_models_checksum">SHA-256 Verified</string>
     <string name="ai_models_speed">%s/s</string>

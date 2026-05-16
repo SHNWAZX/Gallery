@@ -26,7 +26,7 @@ apkVersioning {
     flavorVersionCodes.set(abiVersionCodes)
     versionCodeMultiplier.set(10)
     outputFileName.set("{appName}-{versionName}-{versionCode}{suffix}-{flavorName}-{buildType}")
-    variables.put("appName", "ReFra")
+    variables.put("appName", "Gallery")
     variables.put("suffix", if (includeMaps) "" else "-nomaps")
 }
 
@@ -46,7 +46,7 @@ android {
             useSupportLibrary = true
         }
         val mapsPrefix = if (includeMaps) "" else "-nomaps"
-        base.archivesName.set("ReFra-${versionName}-$versionCode$mapsPrefix")
+        base.archivesName.set("Gallery-${versionName}-$versionCode$mapsPrefix")
     }
 
     lint.baseline = file("lint-baseline.xml")

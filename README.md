@@ -1,13 +1,13 @@
-# ReFra
+# Gallery
 > An Android Gallery app built with Jetpack Compose.
 > 
 > The goal of this project is to create and bring the Gallery app everyone wants, with the features everyone needs. FOSS
 
-![Downloads](https://img.shields.io/github/downloads/IacobIonut01/Gallery/total?color=%23247EE0&label=Downloads)
-[![CI](https://github.com/IacobIonut01/Gallery/actions/workflows/nightly.yml/badge.svg?branch=main)](https://github.com/IacobIonut01/Gallery/actions/workflows/nightly.yml)
-![License](https://img.shields.io/github/license/IacobIonut01/Gallery?color=%23247EE0)
+![Downloads](https://img.shields.io/github/downloads/SHNWAZX/Gallery/total?color=%23247EE0&label=Downloads)
+[![CI](https://github.com/SHNWAZX/Gallery/actions/workflows/nightly.yml/badge.svg?branch=main)](https://github.com/SHNWAZX/Gallery/actions/workflows/nightly.yml)
+![License](https://img.shields.io/github/license/SHNWAZX/Gallery?color=%23247EE0)
 [![Crowdin](https://badges.crowdin.net/gallery-compose/localized.svg)](https://crowdin.com/project/gallery-compose)
-![GitHub Repo stars](https://img.shields.io/github/stars/IacobIonut01/Gallery?color=%23247EE0)
+![GitHub Repo stars](https://img.shields.io/github/stars/SHNWAZX/Gallery?color=%23247EE0)
 
 ![](./screenshots/preview.png)
 [![Crowdin](./screenshots/items/support_banner.png)](https://crowdin.com/project/gallery-compose)
@@ -24,16 +24,12 @@
 [<img 
     alt='Get it on GitHub'
     src='./screenshots/items/get-it-on-github.png'
-    height="80" />](https://github.com/IacobIonut01/Gallery/releases/latest)
+    height="80" />](https://github.com/SHNWAZX/Gallery/releases/latest)
 
 ## Support
 - Translate the project using the link from above
-- Donations:
-    - Use the links on the right side of the repo (Sponsor me)
-    - More options available in-app (Settings -> Donate)
+- Follow project updates in this repository.
 ## Frequent Questions
-- Why 'ReFra'?
-    - Refra is a short form of 'refraction', which is the bending of light when it passes through different mediums. This app aims to refract our perception of media files, making them more accessible and easier to manage.
 - What is the `nomaps` variant?
     - The `nomaps` variant is a version of the app that does not include the maps features - Map Preview, Location Map Viewer. This is useful for users who do not need this feature and want to remove unecessary permissions like INTERNET access.
 - Why Google Play version is 'Paid'?
@@ -50,4 +46,4 @@
 - Will you add [X] feature?
     - Please open a new feature request under 'Issues' tab and if the feature will be considered useful and possible can be added.
 - Can you remove permission [X]?
-    - Several permissions (e.g. Internet connectivity, location) are for showing a map preview of your current photo location data. If you do not need this feature, you can download a `nomaps` release from the [Releases page](https://github.com/IacobIonut01/Gallery/releases).
+    - Several permissions (e.g. Internet connectivity, location) are for showing a map preview of your current photo location data. If you do not need this feature, you can download a `nomaps` release from the [Releases page](https://github.com/SHNWAZX/Gallery/releases).

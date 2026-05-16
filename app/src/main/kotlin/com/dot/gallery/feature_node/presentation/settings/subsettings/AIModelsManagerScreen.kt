@@ -96,7 +96,7 @@ fun AIModelsManagerScreen(
         val descriptionText = stringResource(R.string.ai_models_description) + "\n\n" +
                 stringResource(R.string.ai_models_privacy_description)
         val sourceHeader = stringResource(R.string.ai_models_source)
-        val sourceUrl = "https://github.com/IacobIonut01/ReFra/tree/main/ml-models/src/main/assets"
+        val sourceUrl = "https://github.com/SHNWAZX/Gallery/tree/main/ml-models/src/main/assets"
         val sourceLabel = stringResource(R.string.ai_models_source_url)
         val filesHeader = stringResource(R.string.ai_models_files)
 

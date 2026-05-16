@@ -256,7 +256,7 @@ class ModelManager @Inject constructor(
         )
 
         const val BASE_DOWNLOAD_URL =
-            "https://raw.githubusercontent.com/IacobIonut01/ReFra/refs/heads/main/ml-models/src/main/assets/"
+            "https://raw.githubusercontent.com/SHNWAZX/Gallery/refs/heads/main/ml-models/src/main/assets/"
 
         val EXPECTED_CHECKSUMS = mapOf(
             "visual_quant.onnx" to "a2fbb26b5f6ab5c79dd9bf99ab2dbac4711abc88dc2e20afc02a0827aa3d59c2",
