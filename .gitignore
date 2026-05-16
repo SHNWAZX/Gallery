@@ -13,3 +13,4 @@ api.properties
 /.vscode
 **/build
 **/.kotlin
+/releases/
