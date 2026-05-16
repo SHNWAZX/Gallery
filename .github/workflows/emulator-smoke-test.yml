@@ -1,0 +1,58 @@
+name: Emulator Smoke Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  emulator_smoke_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download emulator APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p smoke
+          gh release download v4.2.1-42101-apk \
+            --repo SHNWAZX/Gallery \
+            --pattern "*x86_64*" \
+            --dir smoke \
+            --clobber
+
+      - name: Run app in Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            set -euxo pipefail
+            APK=$(find smoke -name "*x86_64*.apk" -type f | head -n 1)
+            adb install -r -t -g "$APK"
+            adb logcat -c
+            adb shell monkey -p com.dot.gallery.debug -c android.intent.category.LAUNCHER 1
+            sleep 45
+            adb shell pidof com.dot.gallery.debug
+            adb shell dumpsys activity activities > smoke/activities.txt
+            grep -q "com.dot.gallery.debug" smoke/activities.txt
+            adb exec-out screencap -p > smoke/gallery-smoke.png
+            adb shell uiautomator dump /sdcard/gallery-smoke-ui.xml || true
+            adb pull /sdcard/gallery-smoke-ui.xml smoke/gallery-smoke-ui.xml || true
+            adb logcat -d > smoke/logcat.txt
+            if grep -E "FATAL EXCEPTION|ANR in com.dot.gallery.debug" smoke/logcat.txt; then
+              exit 1
+            fi
+
+      - name: Upload smoke-test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: emulator-smoke-test
+          path: smoke/
