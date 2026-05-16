@@ -52,7 +52,7 @@ jobs:
           SIGNING_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
       - uses: actions/upload-artifact@v5
         with:
-          name: ReFra Release (No Maps)
+          name: Gallery Release (No Maps)
           path: app/build/outputs/apk-renamed/**/*.apk
 
   build_nomaps_withml:
@@ -95,7 +95,7 @@ jobs:
           SIGNING_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
       - uses: actions/upload-artifact@v5
         with:
-          name: ReFra Release (No Maps, WithML)
+          name: Gallery Release (No Maps, WithML)
           path: app/build/outputs/apk-renamed/**/*.apk
 
   build_maps:
@@ -143,12 +143,12 @@ jobs:
           SIGNING_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
       - uses: actions/upload-artifact@v5
         with:
-          name: ReFra Release (Maps)
+          name: Gallery Release (Maps)
           path: app/build/outputs/apk-renamed/**/*.apk
       - name: Apply Google Play patch
         id: gplay_patcher
-        run: git config --global user.email "paulionut2003@gmail.com" &&
-          git config --global user.name "IacobIonut01" &&
+        run: git config --global user.email "245588235+SHNWAZX@users.noreply.github.com" &&
+          git config --global user.name "SHNWAZX" &&
           git fetch https://github.com/IacobIonut01/ReFra.git main_play &&
           git cherry-pick 0dbdd73a 2322b135 &&
           chmod +x ./strip_allfiles_permission.sh && ./strip_allfiles_permission.sh &&
@@ -171,7 +171,7 @@ jobs:
           debugSymbols: app/build/intermediates/merged_native_libs/universalWithMLGplay/mergeUniversalWithMLGplayNativeLibs/out/lib
       - uses: actions/upload-artifact@v5
         with:
-          name: ReFra Release (GPlay Bundle)
+          name: Gallery Release (GPlay Bundle)
           path: app/build/outputs/bundle/universalWithMLGplay/*.aab
 
   release:
@@ -184,20 +184,20 @@ jobs:
           sparse-checkout-cone-mode: false
       - uses: actions/download-artifact@v5
         with:
-          name: ReFra Release (No Maps)
+          name: Gallery Release (No Maps)
       - uses: actions/download-artifact@v5
         with:
-          name: ReFra Release (Maps)
+          name: Gallery Release (Maps)
       - uses: actions/download-artifact@v5
         with:
-          name: ReFra Release (No Maps, WithML)
+          name: Gallery Release (No Maps, WithML)
       - name: Generate changelog
         run: |
           CHANGELOG=${{ needs.build_maps.outputs.versionName }}-${{ needs.build_maps.outputs.versionCode }}-changelog.txt
           cat .github/RELEASE_BODY.md >> "$CHANGELOG"
           echo "" >> "$CHANGELOG"
           echo "### Checksums" >> "$CHANGELOG"
-          find . -name "ReFra-*.apk" -type f -print0 | sort -z | xargs -r0 sha256sum | awk '{gsub(".*/", "", $2); print "**"$2"**:", "`"$1"`"}' >> "$CHANGELOG"
+          find . -name "Gallery-*.apk" -type f -print0 | sort -z | xargs -r0 sha256sum | awk '{gsub(".*/", "", $2); print "**"$2"**:", "`"$1"`"}' >> "$CHANGELOG"
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v3
@@ -207,6 +207,6 @@ jobs:
           prerelease: false
           tag_name: ${{ needs.build_maps.outputs.versionName }}
           files: |
-            ./**/ReFra-*.apk
+            ./**/Gallery-*.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
