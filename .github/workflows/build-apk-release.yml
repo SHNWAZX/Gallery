@@ -29,8 +29,8 @@ jobs:
           chmod +x ./gradlew
           printf 'INCLUDE_MAPS=false\nALL_FILES_ACCESS=true\n' > ./app.properties
 
-      - name: Build universal APK
-        run: ./gradlew :app:assembleUniversalNoMLDebug
+      - name: Build APKs
+        run: ./gradlew :app:assembleUniversalNoMLDebug :app:assembleX86_64NoMLDebug
 
       - name: Prepare APK
         id: prepare
@@ -39,8 +39,10 @@ jobs:
           VERSION_CODE=$(grep -E '^\s+versionCode\s*=' app/build.gradle.kts | awk '{ print $3 }' | head -n 1)
           TAG="v${VERSION_NAME}-${VERSION_CODE}-apk"
           mkdir -p dist
-          APK=$(find app/build/outputs -name "*.apk" -type f | head -n 1)
-          cp "$APK" "dist/Gallery-${VERSION_NAME}-${VERSION_CODE}-universal-debug.apk"
+          UNIVERSAL_APK=$(find app/build/outputs -name "*universal*debug*.apk" -type f | head -n 1)
+          X86_64_APK=$(find app/build/outputs -name "*x86_64*debug*.apk" -type f | head -n 1)
+          cp "$UNIVERSAL_APK" "dist/Gallery-${VERSION_NAME}-${VERSION_CODE}-universal-debug.apk"
+          cp "$X86_64_APK" "dist/Gallery-${VERSION_NAME}-${VERSION_CODE}-x86_64-emulator-debug.apk"
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
           {
             echo "version_name=$VERSION_NAME"
