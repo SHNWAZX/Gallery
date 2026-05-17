@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-## [Delete before submission] Please use and reproduce the bug on the latest build from Github Actions (Artifacts)
+## [Delete before submission] Please reproduce the bug on the latest APK from the Releases page.
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -27,7 +27,7 @@ If applicable, add screenshots to help explain your problem.
 **Smartphone (please complete the following information):**
  - Device: [e.g. Google Pixel 6]
  - OS: [e.g. Android 14]
- - Version [e.g. 1.1.0]
+ - Version: [e.g. 4.2.1]
 
 **Additional context**
 Add any other context about the problem here.

@@ -1,49 +1,75 @@
 # Gallery
-> An Android Gallery app built with Jetpack Compose.
-> 
-> The goal of this project is to create and bring the Gallery app everyone wants, with the features everyone needs. FOSS
 
-![Downloads](https://img.shields.io/github/downloads/SHNWAZX/Gallery/total?color=%23247EE0&label=Downloads)
-[![CI](https://github.com/SHNWAZX/Gallery/actions/workflows/nightly.yml/badge.svg?branch=main)](https://github.com/SHNWAZX/Gallery/actions/workflows/nightly.yml)
+Android photo and video gallery app built with Kotlin, Jetpack Compose, and Material 3.
+
+[![Build APK Release](https://github.com/SHNWAZX/Gallery/actions/workflows/build-apk-release.yml/badge.svg)](https://github.com/SHNWAZX/Gallery/actions/workflows/build-apk-release.yml)
+![Latest Release](https://img.shields.io/github/v/release/SHNWAZX/Gallery?include_prereleases&label=release)
+![Downloads](https://img.shields.io/github/downloads/SHNWAZX/Gallery/total?color=%23247EE0&label=downloads)
 ![License](https://img.shields.io/github/license/SHNWAZX/Gallery?color=%23247EE0)
-[![Crowdin](https://badges.crowdin.net/gallery-compose/localized.svg)](https://crowdin.com/project/gallery-compose)
-![GitHub Repo stars](https://img.shields.io/github/stars/SHNWAZX/Gallery?color=%23247EE0)
 
-![](./screenshots/preview.png)
-[![Crowdin](./screenshots/items/support_banner.png)](https://crowdin.com/project/gallery-compose)
-[![Community](./screenshots/items/community_banner.png)](https://t.me/GalleryCompose)
+![Gallery preview](./screenshots/preview.png)
 
 ## Download
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
-    alt="Get it on F-Droid"
-    height="80">](https://f-droid.org/packages/com.dot.gallery)
-[<img 
-    alt='Get it on Google Play'
-    src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'
-    height="80" />](https://play.google.com/store/apps/details?id=com.dot.gallery.gplay&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
-[<img 
-    alt='Get it on GitHub'
-    src='./screenshots/items/get-it-on-github.png'
-    height="80" />](https://github.com/SHNWAZX/Gallery/releases/latest)
 
-## Support
-- Translate the project using the link from above
-- Follow project updates in this repository.
-## Frequent Questions
-- What is the `nomaps` variant?
-    - The `nomaps` variant is a version of the app that does not include the maps features - Map Preview, Location Map Viewer. This is useful for users who do not need this feature and want to remove unecessary permissions like INTERNET access.
-- Why Google Play version is 'Paid'?
-    - It's just another way to support the project while getting back automatic updates via Google Play
-- Why Android 11 is the minimum version required?
-    - Some Media features and APIs require Android 11 as a minimum version [Trash feature, most APIs used in the app]
-- Will you support lower android versions?
-    - While this is not a priority right now, I do have in mind to include support for lower Android versions at a cost of reduced features. If anyone volntueers to do so before me can request a pull request.
-- Can I verify the downloaded APK file?
-    - Checksums of APKs are provided in the release notes. The signing certificate fingerprint is listed below:
-      - SHA-256: `78:46:05:DD:50:75:BE:05:82:78:A5:42:5C:BD:E5:21:31:62:CB:B4:59:1B:44:28:F4:4E:75:E0:8C:C6:43:8A`
-      - SHA-1: `AD:93:69:27:F2:3B:33:99:FC:C0:B2:8A:25:44:C8:1C:AA:42:B0:9A`
-      - MD5: `73:FC:3C:60:14:D3:69:6D:1B:DA:34:F1:BF:5A:33:3C`
-- Will you add [X] feature?
-    - Please open a new feature request under 'Issues' tab and if the feature will be considered useful and possible can be added.
-- Can you remove permission [X]?
-    - Several permissions (e.g. Internet connectivity, location) are for showing a map preview of your current photo location data. If you do not need this feature, you can download a `nomaps` release from the [Releases page](https://github.com/SHNWAZX/Gallery/releases).
+Get the latest APK files from the GitHub Release:
+
+[Download Gallery APK](https://github.com/SHNWAZX/Gallery/releases/tag/v4.2.1-42101-apk)
+
+Recommended for most phones:
+
+- [arm64-v8a phone ZIP](https://github.com/SHNWAZX/Gallery/releases/download/v4.2.1-42101-apk/Gallery-4.2.1-42101-arm64-v8a-phone-debug.zip)
+
+Other builds:
+
+| File | Use this for |
+| --- | --- |
+| `arm64-v8a-phone-debug.zip` | Most modern Android phones |
+| `armeabi-v7a-phone-debug.zip` | Older 32-bit Android phones |
+| `x86_64-emulator-debug.zip` | Android emulator on PC |
+| `universal-debug.zip` | Any supported CPU, larger download |
+
+After downloading a ZIP, extract it and install the `.apk` inside it.
+
+## Features
+
+- Timeline and album browsing for photos and videos
+- Grid and mosaic layouts
+- Material 3 interface with theme customization
+- Favorites, trash, metadata, search, and media viewer tools
+- Optional maps/location media views
+- Optional AI model support for smart media features
+- Vault features for private media workflows
+
+## Build
+
+This project uses Gradle and the Android SDK.
+
+```powershell
+.\gradlew.bat :app:assembleArm64-v8aNoMLDebug
+```
+
+To build without map features:
+
+```powershell
+Set-Content app.properties "INCLUDE_MAPS=false`nALL_FILES_ACCESS=true"
+.\gradlew.bat :app:assembleArm64-v8aNoMLDebug
+```
+
+GitHub Actions can build release assets automatically:
+
+- [Build APK Release](https://github.com/SHNWAZX/Gallery/actions/workflows/build-apk-release.yml)
+- [Emulator Smoke Test](https://github.com/SHNWAZX/Gallery/actions/workflows/emulator-smoke-test.yml)
+
+## Repository
+
+The app package used by debug builds is `com.dot.gallery.debug`.
+
+The public APKs in this repository are debug-signed test builds. For production publishing, create a private Android signing key and configure release signing secrets in GitHub Actions.
+
+## Credits
+
+This project is based on ReFra by IacobIonut01 and keeps the original Apache-2.0 licensed codebase structure while rebranding this fork as Gallery.
+
+## License
+
+Licensed under the Apache License 2.0. See [LICENSE](./LICENSE).

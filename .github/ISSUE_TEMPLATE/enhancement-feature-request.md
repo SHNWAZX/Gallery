@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-## [Delete before submission] Please use the latest build from Github Actions (Artifacts)
+## [Delete before submission] Please check the latest APK from the Releases page first.
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
