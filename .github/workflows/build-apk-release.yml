@@ -30,7 +30,12 @@ jobs:
           printf 'INCLUDE_MAPS=false\nALL_FILES_ACCESS=true\n' > ./app.properties
 
       - name: Build APKs
-        run: ./gradlew :app:assembleUniversalNoMLDebug :app:assembleX86_64NoMLDebug
+        run: >-
+          ./gradlew
+          :app:assembleUniversalNoMLDebug
+          :app:assembleArm64-v8aNoMLDebug
+          :app:assembleArmeabi-v7aNoMLDebug
+          :app:assembleX86_64NoMLDebug
 
       - name: Prepare APK
         id: prepare
@@ -39,11 +44,21 @@ jobs:
           VERSION_CODE=$(grep -E '^\s+versionCode\s*=' app/build.gradle.kts | awk '{ print $3 }' | head -n 1)
           TAG="v${VERSION_NAME}-${VERSION_CODE}-apk"
           mkdir -p dist
-          UNIVERSAL_APK=$(find app/build/outputs -name "*universal*debug*.apk" -type f | head -n 1)
-          X86_64_APK=$(find app/build/outputs -name "*x86_64*debug*.apk" -type f | head -n 1)
-          cp "$UNIVERSAL_APK" "dist/Gallery-${VERSION_NAME}-${VERSION_CODE}-universal-debug.apk"
-          cp "$X86_64_APK" "dist/Gallery-${VERSION_NAME}-${VERSION_CODE}-x86_64-emulator-debug.apk"
-          sha256sum dist/*.apk > dist/SHA256SUMS.txt
+          copy_apk() {
+            PATTERN="$1"
+            NAME="$2"
+            APK=$(find app/build/outputs -name "$PATTERN" -type f | head -n 1)
+            test -n "$APK"
+            cp "$APK" "dist/Gallery-${VERSION_NAME}-${VERSION_CODE}-${NAME}.apk"
+          }
+          copy_apk "*universal*debug*.apk" "universal-debug"
+          copy_apk "*arm64-v8a*debug*.apk" "arm64-v8a-phone-debug"
+          copy_apk "*armeabi-v7a*debug*.apk" "armeabi-v7a-phone-debug"
+          copy_apk "*x86_64*debug*.apk" "x86_64-emulator-debug"
+          for apk in dist/*.apk; do
+            zip -j -9 "${apk%.apk}.zip" "$apk"
+          done
+          sha256sum dist/* > dist/SHA256SUMS.txt
           {
             echo "version_name=$VERSION_NAME"
             echo "version_code=$VERSION_CODE"
